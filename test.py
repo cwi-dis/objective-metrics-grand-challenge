@@ -28,8 +28,8 @@ features = np.array(feature_data["lcpointpca"])
 feature_name = [item[0][0] for item in feature_data['predictors_name']]
 test_data = pd.DataFrame(
     features,
-    index=[item[0][0][:-4] for item in feature_data['stimulus']],
-    columns=feature_name
+    columns=[item[0][0][:-4] for item in feature_data['stimulus']],
+    index=feature_name
 )
 
 # Load the pretrained model

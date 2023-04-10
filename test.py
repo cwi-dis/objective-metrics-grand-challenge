@@ -16,7 +16,7 @@ import prediction
 subprocess.call(["matlab", "-r", "script"])
 
 # Load the extracted features
-feature_data = sio.loadmat("lcpointpca_feature.mat")
+feature_data = sio.loadmat("mat/objective_scores/lcpointpca_feature.mat")
 features = np.array(feature_data["lcpointpca"])
 
 feature_name = [item[0][0] for item in feature_data["predictors_name"]]

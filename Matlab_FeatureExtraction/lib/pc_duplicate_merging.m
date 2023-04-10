@@ -16,9 +16,9 @@ geomIn = double(pcIn.Location);
 [vertices, ind_v] = unique(geomIn, 'rows');
 
 if (size(pcIn.Location,1) ~= size(vertices,1)) 
-    warning('Duplicated points found.');
+%     warning('Duplicated points found.');
     if ~isempty(pcIn.Color)
-        warning('Color blending is applied.');
+%         warning('Color blending is applied.');
         [vertices_sorted, ind_v] = sortrows(geomIn);
         colors_sorted = double(pcIn.Color(ind_v, :));
         d = diff(vertices_sorted,1,1);
@@ -38,7 +38,7 @@ else
 end
 
 if ~isempty(pcIn.Color)
-    pcOut = pointCloud(double(vertices), 'Color', uint8(colors));
+    pcOut = pointCloud(single(vertices), 'Color', uint8(colors));
 else
-    pcOut = pointCloud(double(vertices));
+    pcOut = pointCloud(single(vertices));
 end

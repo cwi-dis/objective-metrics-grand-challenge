@@ -16,7 +16,7 @@ import prediction
 subprocess.call(["matlab", "-r", "script"])
 
 # Load the extracted features
-feature_data = sio.loadmat("mat/objective_scores/lcpointpca_feature.mat")
+feature_data = sio.loadmat("mat/objective_scores/lcpointpca_features.mat")
 features = np.array(feature_data["lcpointpca"])
 
 feature_name = [item[0][0] for item in feature_data["predictors_name"]]
@@ -29,7 +29,7 @@ results = prediction.predict(model, features)
 result_data = pd.DataFrame(
     results,
     columns=["predictions"],
-    index=[item[0][0][:-4] for item in feature_data["stimulus"]],
+    index=[item[0][0][:-4] for item in feature_data["stimuli"]],
 )
 
 result_data.to_csv("result.csv", index=True)

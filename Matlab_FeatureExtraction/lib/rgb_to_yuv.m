@@ -42,7 +42,7 @@ function [yuv] = rgb_to_yuv(rgb)
 
 
 % Console output
-fprintf('### \tRGB to YUV\n');
+% fprintf('### \tRGB to YUV\n');
 
 r = double(rgb(:,1));
 g = double(rgb(:,2));

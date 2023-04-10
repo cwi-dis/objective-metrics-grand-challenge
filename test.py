@@ -12,29 +12,24 @@ import pandas as pd
 
 import prediction
 
-model_path = '/app/model/PreTrainedModel.pkl'
-
-# Define the paths to the reference and distorted datasets
-ref_data_path = '/DataSet/ref/'
-dis_data_path = '/DataSet/dis/'
-
 # Call the MATLAB script using the subprocess module
 subprocess.call(["matlab", "-r", "script"])
 
 # Load the extracted features
-feature_data = sio.loadmat("/app/mat/objective_scores/lcpointpca_feature.mat")
+feature_data = sio.loadmat("lcpointpca_feature.mat")
 features = np.array(feature_data["lcpointpca"])
 
-feature_name = [item[0][0] for item in feature_data['predictors_name']]
-test_data = pd.DataFrame(
-    features,
-    columns=[item[0][0][:-4] for item in feature_data['stimulus']],
-    index=feature_name
-)
-
+feature_name = [item[0][0] for item in feature_data["predictors_name"]]
 # Load the pretrained model
-model = prediction.load_model(model_path)
+model = prediction.load_model("model/PreTrainedModel.pkl")
 
 # Perform inference using the extracted features and the pretrained model
-results = prediction.predict(features, model)
-results.to_csv("result.csv", index=True)
+results = prediction.predict(model, features)
+
+result_data = pd.DataFrame(
+    results,
+    columns=["predictions"],
+    index=[item[0][0][:-4] for item in feature_data["stimulus"]],
+)
+
+result_data.to_csv("result.csv", index=True)

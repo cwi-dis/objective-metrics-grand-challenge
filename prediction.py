@@ -14,12 +14,6 @@ def load_model(model_path):
         return pickle.load(f)
 
 
-def predict(model, feature):
-    predictions = model.predict(feature.values)
-    val_score = pd.DataFrame(
-        predictions,
-        index=feature.index,
-        columns=["predictions"]
-    )
-
-    return val_score
+def predict(model, features):
+    predictions = model.predict(features.transpose())
+    return predictions

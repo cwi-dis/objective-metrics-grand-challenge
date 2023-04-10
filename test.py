@@ -6,7 +6,6 @@ Created on Mon Apr 10 11:41:07 2023
 """
 
 import subprocess
-import sys
 import scipy.io as sio
 import numpy as np
 import pandas as pd

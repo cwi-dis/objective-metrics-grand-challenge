@@ -6,14 +6,7 @@ Created on Sun Apr  9 12:07:43 2023
 """
 
 import pickle
-import numpy as np
 import pandas as pd
-from scipy import stats
-import scipy.io
-import csv
-import sklearn
-from sklearn.ensemble import RandomForestRegressor
-import joblib
 
 
 def load_model(model_path):

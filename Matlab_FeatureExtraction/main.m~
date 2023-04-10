@@ -1,0 +1,9 @@
+clear all;
+close all;
+
+
+
+% Run metric on directories
+[lcpointpca, predictors_name, stimuli] = feature_extraction("/app/dataset/dis/", "/app/dataset/ref/");
+ 
+exit;

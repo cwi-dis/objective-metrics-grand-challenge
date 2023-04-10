@@ -1,4 +1,4 @@
-function [local_feats] = compute_features(attA, attB, idA, idB, distA, distB, searchSize)
+function [local_feats] = compute_features(attA, attB, idA, idB, searchSize)
 
 %%% Local features
 local_feats = nan(size(attA,1), 42);
@@ -58,8 +58,8 @@ for i = 1:size(attA,1)
     % Append features
     local_feats(i,:) = [geoA_prA(1,:), ...  % 1-3
                     geoB_prA(1,:), ...      % 4-6
-                    meanB(1:3), ...         % 7-9             % meanA(4:6)
-                    [meanA(4:6) meanB(4:6)], ...              % 10-15
+                    meanA(4:6), ...         % 7-9
+                    meanB, ...              % 10-15
                     varA, ...               % 16-21
                     varB, ...               % 22-27
                     covAB, ...              % 28-34
@@ -68,10 +68,3 @@ for i = 1:size(attA,1)
                     eigvecsB(:,3)'];        % 40-42
                 
 end
-
-% Statistics of local geometric resolution
-% meanLocDistA = nanmean(distA,2);
-% varLocDistA = nanvar(distA,[],2);
-% meanLocDistB = nanmean(distB,2);
-% varLocDistB = nanvar(distB,[],2);
-% local_feats = [local_feats, meanLocDistA, varLocDistA, meanLocDistB, varLocDistB];

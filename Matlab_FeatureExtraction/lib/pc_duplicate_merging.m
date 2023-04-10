@@ -9,7 +9,7 @@ function [pcOut] = pc_duplicate_merging(pcIn)
 %       pcIn: Input point cloud
 %
 %   OUTPUTS
-%       pcOut: Output point cloud with "single" floating geometry
+%       pcOut: Output point cloud with "double" floating geometry
 
 
 geomIn = double(pcIn.Location);
@@ -38,7 +38,7 @@ else
 end
 
 if ~isempty(pcIn.Color)
-    pcOut = pointCloud(single(vertices), 'Color', uint8(colors));
+    pcOut = pointCloud(double(vertices), 'Color', uint8(colors));
 else
-    pcOut = pointCloud(single(vertices));
+    pcOut = pointCloud(double(vertices));
 end

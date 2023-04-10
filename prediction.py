@@ -15,5 +15,5 @@ def load_model(model_path):
 
 
 def predict(model, features):
-    predictions = model.predict(features.transpose())
+    predictions = model.predict(features)
     return predictions

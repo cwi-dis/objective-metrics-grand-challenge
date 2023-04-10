@@ -41,6 +41,6 @@ Where `[DATASET_DIR]` is the path to the directory containing the data set and
 After the container has finished running, the results can be extracted using
 the following command:
 
-    docker cp [IMAGE_ID]:/app/result.csv results.csv
+    docker cp [IMAGE_ID]:/app/results.csv results.csv
 
 Where `[IMAGE_ID]` is the ID of the container that computed the results.

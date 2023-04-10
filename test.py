@@ -32,4 +32,4 @@ result_data = pd.DataFrame(
     index=[item[0][0][:-4] for item in feature_data["stimuli"]],
 )
 
-result_data.to_csv("result.csv", index=True)
+result_data.to_csv("results.csv", index=True)

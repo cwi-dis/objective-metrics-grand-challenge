@@ -47,3 +47,13 @@ the following command:
     docker cp [IMAGE_ID]:/app/results.csv results.csv
 
 Where `[IMAGE_ID]` is the ID of the container that computed the results.
+
+For convenience, there is also the script `run.sh`, which performs all these
+steps in sequence and performs cleanup afterwards. The script can be invoked
+as follows, passing in the absolute paths of the dataset directory and the
+model directory:
+
+    bash run.sh dataset_dir model_dir
+
+After a completed run, the predictions are available in the current working
+directory as `results.csv`.

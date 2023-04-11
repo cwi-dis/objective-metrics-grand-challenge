@@ -1,7 +1,7 @@
 # 2023 Grand Challenge on Objective Quality Metrics for Volumetric Contents
 
-This repository contains the files for building the container for the
-Objective Quality Metrics Grand Challenge.
+This repository contains the files for building and running the container for
+the Objective Quality Metrics Grand Challenge.
 
 ## Building the container
 
@@ -37,7 +37,9 @@ To run the container and obtain the results, run the following command:
     docker run -v [DATASET_DIR]:/app/dataset/ -v [MODEL_DIR]:/app/model/ grandchallenge python test.py
 
 Where `[DATASET_DIR]` is the path to the directory containing the data set and
-`[MODEL_DIR]` is the path to the directory containing the model.
+`[MODEL_DIR]` is the path to the directory containing the model. `DATASET_DIR`
+should contain two subdirectories named `dis/` and `ref/`, containing the
+distorted and reference point clouds respectively.
 
 After the container has finished running, the results can be extracted using
 the following command:

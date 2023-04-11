@@ -9,8 +9,11 @@ The container can be built as such:
 
     docker build -t grandchallenge .
 
-After that the built container is available under the tag
-`grandchallenge:latest`.
+After that, the built container is available under the tag
+`grandchallenge:latest`. The container can also be built and tagged by calling
+the script `build.sh`:
+
+    bash build.sh
 
 ### Building the base image
 

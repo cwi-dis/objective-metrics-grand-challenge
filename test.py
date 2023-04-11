@@ -1,9 +1,14 @@
-import subprocess
-import scipy.io as sio
 import numpy as np
 import pandas as pd
+import pickle
+import scipy.io as sio
+import subprocess
 
-import prediction
+
+def load_model(model_path):
+    with open(model_path, "rb") as f:
+        # Unpickle model found at path
+        return pickle.load(f)
 
 
 def main():
@@ -14,19 +19,20 @@ def main():
     feature_data = sio.loadmat("mat/objective_scores/lcpointpca_features.mat")
     features = np.array(feature_data["lcpointpca"])
 
-    feature_name = [item[0][0] for item in feature_data["predictors_name"]]
     # Load the pretrained model
-    model = prediction.load_model("model/PreTrainedModel.pkl")
+    model = load_model("model/PreTrainedModel.pkl")
 
     # Perform inference using the extracted features and the pretrained model
-    results = prediction.predict(model, features)
+    results = model.predict(features)
 
+    # Create dataframe with prediction value for each input
     result_data = pd.DataFrame(
         results,
         columns=["predictions"],
         index=[item[0][0][:-4] for item in feature_data["stimuli"]],
     )
 
+    # Store dataframe as CSV
     result_data.to_csv("results.csv", index=True)
 
 

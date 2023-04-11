@@ -9,19 +9,20 @@ The container can be built as such:
 
     docker build -t grandchallenge .
 
-After that the build container is available under the tag
+After that the built container is available under the tag
 `grandchallenge:latest`.
 
 ### Building the base image
 
 Keep in mind that the image is based on the `mathworks/matlab:r2022a` image
-with the `Computer Vision` and the `Statistics and Machine Learning` installed.
-To create this image, run the following command:
+with the `Computer Vision` and the `Statistics and Machine Learning` toolboxes
+installed. To create this base image, run the following command:
 
     docker run --init -it -p 5902:5901 -p 6081:6080 --shm-size=512M mathworks/matlab:r2022a -vnc
 
 Then, in a web browser, go to `http://localhost:6081` and install the required
-toolboxes. With the container still running, tag a new image:
+toolboxes in a Matlab instance launched using `sudo` from a terminal. With the
+container still running, tag a new image:
 
     docker commit --change 'ENTRYPOINT ["/bin/run.sh"]' [IMAGE_ID] grandchallenge_toolboxes:r2022a
 

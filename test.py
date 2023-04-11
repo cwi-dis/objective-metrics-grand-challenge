@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 10 11:41:07 2023
-
-@author: may88
-"""
-
 import subprocess
 import scipy.io as sio
 import numpy as np
@@ -12,24 +5,30 @@ import pandas as pd
 
 import prediction
 
-# Call the MATLAB script using the subprocess module
-subprocess.call(["matlab", "-r", "script"])
 
-# Load the extracted features
-feature_data = sio.loadmat("mat/objective_scores/lcpointpca_features.mat")
-features = np.array(feature_data["lcpointpca"])
+def main():
+    # Call the MATLAB script using the subprocess module
+    subprocess.call(["matlab", "-r", "script"])
 
-feature_name = [item[0][0] for item in feature_data["predictors_name"]]
-# Load the pretrained model
-model = prediction.load_model("model/PreTrainedModel.pkl")
+    # Load the extracted features
+    feature_data = sio.loadmat("mat/objective_scores/lcpointpca_features.mat")
+    features = np.array(feature_data["lcpointpca"])
 
-# Perform inference using the extracted features and the pretrained model
-results = prediction.predict(model, features)
+    feature_name = [item[0][0] for item in feature_data["predictors_name"]]
+    # Load the pretrained model
+    model = prediction.load_model("model/PreTrainedModel.pkl")
 
-result_data = pd.DataFrame(
-    results,
-    columns=["predictions"],
-    index=[item[0][0][:-4] for item in feature_data["stimuli"]],
-)
+    # Perform inference using the extracted features and the pretrained model
+    results = prediction.predict(model, features)
 
-result_data.to_csv("results.csv", index=True)
+    result_data = pd.DataFrame(
+        results,
+        columns=["predictions"],
+        index=[item[0][0][:-4] for item in feature_data["stimuli"]],
+    )
+
+    result_data.to_csv("results.csv", index=True)
+
+
+if __name__ == "__main__":
+    main()

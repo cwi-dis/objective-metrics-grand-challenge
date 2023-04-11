@@ -10,9 +10,8 @@ ADD requirements.txt .
 
 RUN pip3 install -r requirements.txt
 
-ADD Matlab_FeatureExtraction/script.m .
-ADD Matlab_FeatureExtraction/feature_extraction.m .
 ADD Matlab_FeatureExtraction/lib .
+ADD Matlab_FeatureExtraction/feature_extraction.m .
+ADD Matlab_FeatureExtraction/script.m .
 
-ADD prediction.py .
 ADD test.py .

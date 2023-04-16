@@ -1,7 +1,7 @@
 function [local_feats] = compute_features(attA, attB, idA, idB, searchSize)
 
 %%% Local features
-local_feats = nan(size(attA,1), 42);
+local_feats = nan(size(attA,1), 21);
 for i = 1:size(attA,1)
     
     % Get data
@@ -43,28 +43,13 @@ for i = 1:size(attA,1)
     
     % Covariance    
     covAB = mean(devmeanA.*devmeanB);
-            
-    % Principal components of projected distorted data
-    covMatrixB = cov(geoB_prA); % Covariance matrix on projected distorted data
-    if sum(~isfinite(covMatrixB(:))) >= 1
-        eigvecsB = nan(3,3);
-    else
-        [eigvecsB, ~] = pcacov(covMatrixB); % Eigen decomposition on projected distorted data
-        if size(eigvecsB, 2) ~= 3
-            eigvecsB = nan(3,3);
-        end
-    end
-    
+
     % Append features
     local_feats(i,:) = [geoA_prA(1,:), ...  % 1-3
                     geoB_prA(1,:), ...      % 4-6
-                    meanA(4:6), ...         % 7-9
-                    meanB, ...              % 10-15
-                    varA, ...               % 16-21
-                    varB, ...               % 22-27
-                    covAB, ...              % 28-34
-                    eigvecsB(:,1)', ...     % 35-37
-                    eigvecsB(:,2)', ...     % 37-39
-                    eigvecsB(:,3)'];        % 40-42
+                    varA, ...               % 7-12
+                    varB, ...               % 13-18
+                    covAB(:,1:3), ...       % 19-21
+                    ];        
                 
 end

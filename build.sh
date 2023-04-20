@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t grandchallenge .
+docker build -t grandchallenge_track3 .

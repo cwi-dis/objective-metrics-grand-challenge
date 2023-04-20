@@ -2,7 +2,7 @@ function [local_feats] = compute_features(attA, attB, idA, idB, searchSize)
 
 %%% Local features
 local_feats = nan(size(attA,1), 21);
-for i = 1:size(attA,1)
+parfor i = 1:size(attA,1)
     
     % Get data
     dataA = attA(idA(i,1:searchSize), :);

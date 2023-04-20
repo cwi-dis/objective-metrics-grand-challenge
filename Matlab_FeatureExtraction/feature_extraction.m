@@ -1,5 +1,5 @@
 function feature_extraction(pathInPcloudsRef, pathInPcloudsDis)
-    
+
 % Initializations
 pathOut = './mat/objective_scores/';
 if ~exist(pathOut, 'dir')

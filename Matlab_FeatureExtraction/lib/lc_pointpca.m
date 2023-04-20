@@ -10,7 +10,7 @@ end
 
 if size(varargin) < 3
     searchSize =  81;
-    numPreds = 40;
+    numPreds = 20;
 end
 
 

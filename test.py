@@ -16,11 +16,11 @@ def main():
     subprocess.call(["matlab", "-r", "script"])
 
     # Load the extracted features
-    feature_data = sio.loadmat("mat/objective_scores/lcpointpca_features.mat")
+    feature_data = sio.loadmat("./mat/objective_scores/lcpointpca_features.mat")
     features = np.array(feature_data["lcpointpca"])
 
     # Load the pretrained model
-    model = load_model("model/PreTrainedModel.pkl")
+    model = load_model("model/Model_Track3.pkl")
 
     # Perform inference using the extracted features and the pretrained model
     results = model.predict(features)

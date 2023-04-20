@@ -9,7 +9,7 @@ end
 % Extract features
 [refList, disList] = get_lists(pathInPcloudsRef, pathInPcloudsDis);
 numStimuli = size(disList,1);
-lcpointpca = zeros(numStimuli,40);
+lcpointpca = zeros(numStimuli, 20);
 for i = 1:numStimuli
     fprintf('Stimulus: %s\n', disList{i});
     filenameRef = strcat(pathInPcloudsRef, refList{i});

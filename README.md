@@ -37,7 +37,7 @@ section.
 
 To run the container and obtain the results, run the following command:
 
-    docker run -v [DATASET_DIR]:/app/dataset/ -v [MODEL_DIR]:/app/model/ grandchallenge python test.py
+    docker run -it -v [DATASET_DIR]:/app/dataset/ -v [MODEL_DIR]:/app/model/ grandchallenge python test.py
 
 Where `[DATASET_DIR]` is the path to the directory containing the data set and
 `[MODEL_DIR]` is the path to the directory containing the model. `DATASET_DIR`
@@ -58,5 +58,6 @@ model directory:
 
     bash run.sh dataset_dir model_dir
 
+Note that you may have to provide the credentials to a valid Matlab account.
 After a completed run, the predictions are available in the current working
 directory as `results.csv`.

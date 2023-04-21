@@ -50,7 +50,7 @@ preds(:,1:3) = rel_diff(tmeanA, tmeanB);
 % Relative difference variance
 preds(:,4:6) = rel_diff(tvarA, tvarB);
 % Relative difference covariance
-preds(:,7:9) = abs(sqrt(tvarA).*sqrt(tvarB) - tcovAB)./(sqrt(tvarA).*sqrt(tvarB));
+preds(:,7:9) = abs(sqrt(tvarA).*sqrt(tvarB) - tcovAB)./(sqrt(tvarA).*sqrt(tvarB) + eps(1));
 % Relative difference sum of variances
 preds(:,10) = rel_diff(sum(tvarA,2), sum(tvarB,2));
 % Relative difference ominvariance
@@ -78,7 +78,7 @@ preds(:,23:24) = abs(gmeanB(:,2:3));
 % Relative difference variance
 preds(:,25:27) = rel_diff(gvarA, gvarB);
 % Relative difference covariance
-preds(:,28:30) = abs(sqrt(gvarA).*sqrt(gvarB) - gcovAB)./(sqrt(gvarA).*sqrt(gvarB)); 
+preds(:,28:30) = abs(sqrt(gvarA).*sqrt(gvarB) - gcovAB)./(sqrt(gvarA).*sqrt(gvarB) + eps(1)); 
 % Relative difference ominvariance
 preds(:,31) = rel_diff(prod(gvarA,2).^(1/3), prod(gvarB,2).^(1/3));
 % Relative difference entropy
